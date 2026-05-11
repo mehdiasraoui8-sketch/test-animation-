@@ -15,8 +15,8 @@ export const DEFAULT_CONTROLS = {
 }
 
 export const MOTION_AXES = {
-  x: { x: -1, y: 0.2 },
-  y: { x: 0, y: 1 },
+  x: { x: 1, y: -0.62 },
+  y: { x: 1, y: 0.58 },
   z: { x: -0.32, y: -1 },
 }
 
@@ -30,12 +30,12 @@ export const CONTROLS = [
   {
     key: 'x',
     label: 'X · blue carriage',
-    description: 'Slides the blue carriage on the gray bars mounted on the green traverses.',
+    description: 'Slides the blue carriage on the gray bars mounted between the green traverses.',
   },
   {
     key: 'y',
     label: 'Y · green traverses',
-    description: 'Moves the paired green traverses together on the fixed gray frame bars.',
+    description: 'Moves the green traverses on the gray bars fixed to the red towers.',
   },
   {
     key: 'z',

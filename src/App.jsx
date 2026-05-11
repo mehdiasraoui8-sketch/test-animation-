@@ -42,8 +42,9 @@ function App() {
           <p className="eyebrow">Interactive H-Bot reconstruction</p>
           <h1>Axis-aligned motion study</h1>
           <p className="hero-copy">
-            Green traverses glide on gray bars fixed to the red towers, blue traverse glides on gray
-            bars mounted between the green traverses, and yellow remains the Z stage on blue.
+            Green traverses glide on the gray bars attached to the red towers, blue traverse glides
+            on the gray bars attached between the green traverses, and yellow remains the Z stage on
+            blue.
           </p>
         </div>
         <button
@@ -100,7 +101,7 @@ function App() {
             <img src={axesReferenceImage} alt="Axes reference showing X, Y and Z directions" />
             <div>
               <strong>Axes reference</strong>
-              <p>Green glides on tower bars, blue glides on green bars, yellow is Z on blue.</p>
+              <p>Green on red-tower bars, blue on inter-green bars, yellow is Z on blue.</p>
             </div>
           </div>
         </aside>
