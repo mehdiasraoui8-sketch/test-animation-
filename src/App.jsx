@@ -43,9 +43,8 @@ function App() {
           <p className="eyebrow">Interactive H-Bot reconstruction</p>
           <h1>Axis-aligned motion study</h1>
           <p className="hero-copy">
-            Gray bars are used as the visual guide paths: the green traverses move in Y, the blue
-            traverse glides in X on the green bars, and the yellow assembly moves in Z relative to
-            the blue carriage.
+            Axis ownership is carriage-based: blue is X, green is Y, yellow is Z. Each layer glides
+            on its corresponding gray bars to keep the motion path mechanically coherent.
           </p>
         </div>
         <button
@@ -100,7 +99,7 @@ function App() {
             <img src={axesReferenceImage} alt="Axes reference showing X, Y and Z directions" />
             <div>
               <strong>Axes reference</strong>
-              <p>X follows the red diagonal, Y is vertical, and Z follows the blue diagonal.</p>
+              <p>Blue carriage = X, green traverses = Y, yellow assembly = Z.</p>
             </div>
           </div>
         </aside>

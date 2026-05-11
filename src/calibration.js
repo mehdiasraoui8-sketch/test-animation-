@@ -15,32 +15,32 @@ export const DEFAULT_CONTROLS = {
 }
 
 export const MOTION_AXES = {
-  x: { x: -1, y: 0.38 },
+  x: { x: -1, y: 0.2 },
   y: { x: 0, y: 1 },
-  z: { x: -0.5, y: -0.9 },
+  z: { x: -0.32, y: -1 },
 }
 
 export const MOTION_LIMITS = {
-  x: 240,
-  y: 170,
-  z: 120,
+  x: 190,
+  y: 145,
+  z: 90,
 }
 
 export const CONTROLS = [
   {
     key: 'y',
-    label: 'Y · frame glide',
-    description: 'Moves both green traverses together on the fixed gray guide bars.',
+    label: 'Y · green carriage',
+    description: 'Moves the green traverses together on the fixed gray frame bars.',
   },
   {
     key: 'x',
-    label: 'X · blue traverse',
-    description: 'Slides the blue carriage on the gray bars attached to the green traverses.',
+    label: 'X · blue carriage',
+    description: 'Slides the blue carriage on the gray bars mounted on the green traverses.',
   },
   {
     key: 'z',
     label: 'Z · yellow assembly',
-    description: 'Raises and lowers the yellow assembly relative to the blue carriage.',
+    description: 'Moves the yellow assembly along its Z path relative to the blue carriage.',
   },
 ]
 
