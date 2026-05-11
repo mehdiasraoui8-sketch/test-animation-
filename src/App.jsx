@@ -10,7 +10,6 @@ import {
   CONTROL_RANGE,
   DEFAULT_CONTROLS,
   SCENE_SIZE,
-  combineOffsets,
   getAxisOffset,
 } from './calibration'
 
@@ -24,8 +23,8 @@ function App() {
 
     return {
       green: yOffset,
-      blue: combineOffsets(yOffset, xOffset),
-      yellow: combineOffsets(yOffset, xOffset, zOffset),
+      blue: xOffset,
+      yellow: zOffset,
     }
   }, [controls])
 
@@ -43,8 +42,8 @@ function App() {
           <p className="eyebrow">Interactive H-Bot reconstruction</p>
           <h1>Axis-aligned motion study</h1>
           <p className="hero-copy">
-            Axis ownership is carriage-based: blue is X, green is Y, yellow is Z. Each layer glides
-            on its corresponding gray bars to keep the motion path mechanically coherent.
+            Green traverses glide on gray bars fixed to the red towers, blue traverse glides on gray
+            bars mounted between the green traverses, and yellow remains the Z stage on blue.
           </p>
         </div>
         <button
@@ -63,9 +62,11 @@ function App() {
             style={{ '--scene-width': SCENE_SIZE.width, '--scene-height': SCENE_SIZE.height }}
           >
             <StaticFrame />
-            <GreenTraverses offset={offsets.green} />
-            <BlueTraverse offset={offsets.blue} />
-            <ZAssembly offset={offsets.yellow} />
+            <GreenTraverses offset={offsets.green}>
+              <BlueTraverse offset={offsets.blue}>
+                <ZAssembly offset={offsets.yellow} />
+              </BlueTraverse>
+            </GreenTraverses>
           </div>
         </div>
 
@@ -99,7 +100,7 @@ function App() {
             <img src={axesReferenceImage} alt="Axes reference showing X, Y and Z directions" />
             <div>
               <strong>Axes reference</strong>
-              <p>Blue carriage = X, green traverses = Y, yellow assembly = Z.</p>
+              <p>Green glides on tower bars, blue glides on green bars, yellow is Z on blue.</p>
             </div>
           </div>
         </aside>
