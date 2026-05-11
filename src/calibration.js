@@ -28,14 +28,14 @@ export const MOTION_LIMITS = {
 
 export const CONTROLS = [
   {
-    key: 'y',
-    label: 'Y · green carriage',
-    description: 'Moves the green traverses together on the fixed gray frame bars.',
-  },
-  {
     key: 'x',
     label: 'X · blue carriage',
     description: 'Slides the blue carriage on the gray bars mounted on the green traverses.',
+  },
+  {
+    key: 'y',
+    label: 'Y · green traverses',
+    description: 'Moves the paired green traverses together on the fixed gray frame bars.',
   },
   {
     key: 'z',
