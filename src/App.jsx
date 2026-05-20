@@ -10,6 +10,7 @@ import {
   CONTROL_RANGE,
   DEFAULT_CONTROLS,
   SCENE_SIZE,
+  combineOffsets,
   getAxisOffset,
 } from './calibration'
 
@@ -23,8 +24,8 @@ function App() {
 
     return {
       green: yOffset,
-      blue: xOffset,
-      yellow: zOffset,
+      blue: combineOffsets(yOffset, xOffset),
+      yellow: combineOffsets(yOffset, xOffset, zOffset),
     }
   }, [controls])
 
@@ -63,11 +64,9 @@ function App() {
             style={{ '--scene-width': SCENE_SIZE.width, '--scene-height': SCENE_SIZE.height }}
           >
             <StaticFrame />
-            <GreenTraverses offset={offsets.green}>
-              <BlueTraverse offset={offsets.blue}>
-                <ZAssembly offset={offsets.yellow} />
-              </BlueTraverse>
-            </GreenTraverses>
+            <GreenTraverses offset={offsets.green} />
+            <BlueTraverse offset={offsets.blue} />
+            <ZAssembly offset={offsets.yellow} />
           </div>
         </div>
 

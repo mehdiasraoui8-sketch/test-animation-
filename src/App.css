@@ -127,12 +127,16 @@
   z-index: 3;
 }
 
-.machine-layer--z {
+.machine-layer--green-overlay {
   z-index: 4;
 }
 
-.machine-layer--foreground {
+.machine-layer--z {
   z-index: 5;
+}
+
+.machine-layer--foreground {
+  z-index: 6;
 }
 
 .control-card {

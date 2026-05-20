@@ -20,12 +20,6 @@ export const MOTION_AXES = {
   z: { x: 0, y: -1 },
 }
 
-export const MOTION_LIMITS = {
-  x: 190,
-  y: 145,
-  z: 90,
-}
-
 export const CONTROLS = [
   {
     key: 'x',
@@ -46,7 +40,7 @@ export const CONTROLS = [
 
 export function getAxisOffset(axisKey, value) {
   const vector = MOTION_AXES[axisKey]
-  const distance = (value / 100) * MOTION_LIMITS[axisKey]
+  const distance = value
 
   return {
     x: vector.x * distance,
