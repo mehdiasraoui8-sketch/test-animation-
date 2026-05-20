@@ -17,7 +17,7 @@ export const DEFAULT_CONTROLS = {
 export const MOTION_AXES = {
   x: { x: 1, y: -0.62 },
   y: { x: 1, y: 0.58 },
-  z: { x: -0.32, y: -1 },
+  z: { x: 0, y: -1 },
 }
 
 export const MOTION_LIMITS = {
