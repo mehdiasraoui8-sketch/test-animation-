@@ -123,16 +123,16 @@
   z-index: 2;
 }
 
-.machine-layer--blue {
-  z-index: 5;
-}
-
-.machine-layer--green-overlay {
+.machine-layer--z {
   z-index: 3;
 }
 
-.machine-layer--z {
-  z-index: 1;
+.machine-layer--blue {
+  z-index: 4;
+}
+
+.machine-layer--green-overlay {
+  z-index: 5;
 }
 
 .machine-layer--foreground {
