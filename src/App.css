@@ -132,7 +132,7 @@
 }
 
 .machine-layer--z {
-  z-index: 4;
+  z-index: 1;
 }
 
 .machine-layer--foreground {
