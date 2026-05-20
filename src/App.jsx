@@ -16,6 +16,11 @@ import {
 
 function App() {
   const [controls, setControls] = useState(DEFAULT_CONTROLS)
+  const [axisRanges, setAxisRanges] = useState(() => ({
+    x: { ...CONTROL_RANGE },
+    y: { ...CONTROL_RANGE },
+    z: { ...CONTROL_RANGE },
+  }))
 
   const offsets = useMemo(() => {
     const yOffset = getAxisOffset('y', controls.y)
@@ -36,6 +41,49 @@ function App() {
     }))
   }
 
+  const clampValue = (value, min, max) => Math.min(Math.max(value, min), max)
+
+  const handleRangeChange = (axisKey, bound) => (event) => {
+    const nextValue = Number(event.target.value)
+
+    setAxisRanges((current) => {
+      const axisRange = {
+        ...current[axisKey],
+        [bound]: Number.isNaN(nextValue) ? 0 : nextValue,
+      }
+
+      if (axisRange.min > axisRange.max) {
+        if (bound === 'min') {
+          axisRange.max = axisRange.min
+        } else {
+          axisRange.min = axisRange.max
+        }
+      }
+
+      setControls((currentControls) => ({
+        ...currentControls,
+        [axisKey]: clampValue(currentControls[axisKey], axisRange.min, axisRange.max),
+      }))
+
+      return {
+        ...current,
+        [axisKey]: axisRange,
+      }
+    })
+  }
+
+  const handleReset = () => {
+    setControls((currentControls) => ({
+      ...currentControls,
+      ...Object.fromEntries(
+        Object.entries(DEFAULT_CONTROLS).map(([axisKey, value]) => [
+          axisKey,
+          clampValue(value, axisRanges[axisKey].min, axisRanges[axisKey].max),
+        ]),
+      ),
+    }))
+  }
+
   return (
     <main className="app-shell">
       <section className="hero-panel">
@@ -51,7 +99,7 @@ function App() {
         <button
           className="reset-button"
           type="button"
-          onClick={() => setControls(DEFAULT_CONTROLS)}
+          onClick={handleReset}
         >
           Reset axes
         </button>
@@ -77,23 +125,45 @@ function App() {
           </div>
 
           <div className="control-list">
-            {CONTROLS.map(({ key, label, description }) => (
-              <label className="control" key={key}>
-                <div className="control__header">
-                  <span>{label}</span>
-                  <output htmlFor={`axis-${key}`}>{controls[key]}</output>
-                </div>
-                <input
-                  id={`axis-${key}`}
-                  type="range"
-                  min={CONTROL_RANGE.min}
-                  max={CONTROL_RANGE.max}
-                  value={controls[key]}
-                  onChange={handleControlChange(key)}
-                />
-                <span className="control__description">{description}</span>
-              </label>
-            ))}
+            {CONTROLS.map(({ key, label, description }) => {
+              const axisRange = axisRanges[key]
+
+              return (
+                <label className="control" key={key}>
+                  <div className="control__header">
+                    <span>{label}</span>
+                    <output htmlFor={`axis-${key}`}>{controls[key]}</output>
+                  </div>
+                  <input
+                    id={`axis-${key}`}
+                    type="range"
+                    min={axisRange.min}
+                    max={axisRange.max}
+                    value={controls[key]}
+                    onChange={handleControlChange(key)}
+                  />
+                  <div className="control__range">
+                    <label>
+                      Min
+                      <input
+                        type="number"
+                        value={axisRange.min}
+                        onChange={handleRangeChange(key, 'min')}
+                      />
+                    </label>
+                    <label>
+                      Max
+                      <input
+                        type="number"
+                        value={axisRange.max}
+                        onChange={handleRangeChange(key, 'max')}
+                      />
+                    </label>
+                  </div>
+                  <span className="control__description">{description}</span>
+                </label>
+              )
+            })}
           </div>
 
           <div className="reference-card">
